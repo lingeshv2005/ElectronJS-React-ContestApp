@@ -1,0 +1,213 @@
+/* MyContest.css */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Outfit:wght@300;400;600;800&display=swap');
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary: #10b981;
+  --accent1: #f43f5e;
+  --accent2: #8b5cf6;
+  --dark: #1e293b;
+  --light: #f8fafc;
+  --gradient-start: #6366f1;
+  --gradient-end: #8b5cf6;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --border-radius: 8px;
+  --gray-dark: #334155;
+  --gray-light: #94a3b8;
+  --card-hover: rgba(255, 255, 255, 0.05);
+  --card-active: rgba(255, 255, 255, 0.1);
+  --error: #ef4444;
+}
+/* Main container */
+.my-contests-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Outfit', sans-serif;
+}
+/* Page title */
+.my-contests-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  color: var(--light);
+  position: relative;
+  display: inline-block;
+}
+.my-contests-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(to right, var(--primary), var(--accent2));
+  border-radius: 2px;
+}
+/* Section title */
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 40px 0 20px;
+  color: var(--light);
+  display: flex;
+  align-items: center;
+}
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, var(--primary), transparent);
+  margin-left: 15px;
+}
+/* Contests grid */
+.contests-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+/* Contest card */
+.contest-content {
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  text-decoration: none;
+  color: var(--light);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+.contest-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--primary), var(--accent2));
+  transition: width var(--transition);
+}
+.contest-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+.contest-content:hover::before {
+  width: 6px;
+}
+.contest-title {
+  margin: 0 0 15px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: white;
+  transition: color var(--transition);
+}
+.contest-description {
+  margin: 0 0 20px;
+  color: var(--gray-light);
+  font-size: 1rem;
+  line-height: 1.6;
+  flex: 1;
+}
+.contest-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--gray-light);
+}
+.contest-meta span {
+  display: flex;
+  align-items: center;
+}
+.contest-meta span::before {
+  content: '•';
+  margin-right: 8px;
+  color: var(--primary);
+  font-size: 1.2rem;
+}
+/* Empty states */
+.no-contests {
+  background-color: var(--card-bg);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  margin-top: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+}
+.no-contests p {
+  font-size: 1.2rem;
+  color: var(--gray-light);
+  margin-bottom: 20px;
+}
+/* Loading and error states */
+.contests-loading, .contests-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  font-size: 1.2rem;
+  color: var(--gray-light);
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  text-align: center;
+}
+.contests-error {
+  color: var(--error);
+}
+/* Loading animation */
+.contests-loading::after {
+  content: '...';
+  animation: loading-dots 1.5s infinite;
+  display: inline-block;
+  width: 20px;
+  text-align: left;
+}
+@keyframes loading-dots {
+  0% { content: '.'; }
+  33% { content: '..'; }
+  66% { content: '...'; }
+  100% { content: '.'; }
+}
+/* Responsive styles */
+@media (max-width: 768px) {
+  .my-contests-title {
+    font-size: 2rem;
+  }
+  .section-title {
+    font-size: 1.5rem;
+  }
+  .contests-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .my-contests-container {
+    padding: 20px 15px;
+  }
+  .my-contests-title {
+    font-size: 1.8rem;
+  }
+  .no-contests,
+  .contests-loading,
+  .contests-error {
+    padding: 20px;
+  }
+  .contest-content {
+    padding: 20px;
+  }
+  .contest-title {
+    font-size: 1.2rem;
+  }
+}

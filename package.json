@@ -1,0 +1,59 @@
+{
+  "name": "full-screen",
+  "version": "0.0.0",
+  "main": "main.cjs",
+  "type": "module",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "electron": "electron ."
+  },
+  "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
+    "axios": "^1.9.0",
+    "devtools-detect": "^4.0.2",
+    "node-fetch": "^3.3.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.6.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.25.0",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "@vitejs/plugin-react": "^4.4.1",
+    "electron": "^36.2.0",
+    "electron-builder": "^26.0.12",
+    "electron-reload": "^2.0.0-alpha.1",
+    "eslint": "^9.25.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "vite": "^6.3.5"
+  },
+  "build": {
+    "appId": "full-screen",
+    "protocols": {
+      "name": "electron-deep-linking",
+      "schemes": [
+        "leetcode-tracker"
+      ]
+    },
+    "files": [
+      "dist/**/*",
+      "main.cjs",
+      "preload.js"
+    ],
+    "mac": {
+      "category": "public.app-category.Reference"
+    },
+    "win": {
+      "target": "nsis"
+    }
+  }
+}
