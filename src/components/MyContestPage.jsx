@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';  // <-- import useNavigate
 import '../styles/MyContest.css';
 
 export default function MyContestPage() {
@@ -9,6 +9,7 @@ export default function MyContestPage() {
   const [error, setError] = useState(null);
 
   const userId = localStorage.getItem('userId');
+  const navigate = useNavigate();  // <-- initialize navigate
 
   useEffect(() => {
     if (userId) {
@@ -35,12 +36,27 @@ export default function MyContestPage() {
     }
   };
 
+  // Logout handler function
+  const handleLogout = () => {
+    localStorage.removeItem('username');
+    localStorage.removeItem('isAuth');
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    navigate('/login');  // Redirect to login page
+  };
+
   if (loading) return <div className="contests-loading">Loading your contests...</div>;
   if (error) return <div className="contests-error">{error}</div>;
 
   return (
     <div className="my-contests-container">
-      <h1 className="my-contests-title">My Contests</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h1 className="my-contests-title">My Contests</h1>
+        <button onClick={handleLogout} className="logout-button">
+          Logout
+        </button>
+      </div>
+
       {participatedContests.length > 0 && (
         <>
           <h2 className="section-title">Contests You Participated In</h2>

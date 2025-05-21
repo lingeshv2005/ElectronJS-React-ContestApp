@@ -1,5 +1,5 @@
 {
-  "name": "full-screen",
+  "name": "leetcode-tracker",
   "version": "0.0.0",
   "main": "main.cjs",
   "type": "module",
@@ -37,7 +37,7 @@
     "vite": "^6.3.5"
   },
   "build": {
-    "appId": "full-screen",
+    "appId": "leetcode-tracker",
     "protocols": {
       "name": "electron-deep-linking",
       "schemes": [
